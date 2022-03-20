@@ -1,3 +1,12 @@
+# Setup
+Download and install [Node.js](https://nodejs.org/en/). LTS version is fine, and follow the defaults when installing.
+
+Navigate to the locally cloned repository and open a command prompt. Run `npm install`.
+
+Finally, run `npm install -g @angular/cli`.
+
+You're all set!
+
 # Demo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
