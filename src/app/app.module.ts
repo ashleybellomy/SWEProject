@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { GameComponent } from './game/game.component';
+import { GameWindowComponent } from './game-window/game-window.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameComponent
+    GameWindowComponent
   ],
   imports: [
     BrowserModule

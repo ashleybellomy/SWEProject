@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import Phaser from 'phaser';
+import { GameEngineService } from '../core/services/game-engine.service';
 
 @Component({
-  selector: 'app-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.css']
+  selector: 'app-game-window',
+  templateUrl: './game-window.component.html',
+  styleUrls: ['./game-window.component.css']
 })
-export class GameComponent implements OnInit {
+export class GameWindowComponent implements OnInit {
   phaserGame: Phaser.Game;
   config: Phaser.Types.Core.GameConfig;
 
-  constructor() {
+  constructor(private gameEngine: GameEngineService) {
     this.config = {
       type: Phaser.AUTO,
       height: 600,
@@ -25,23 +26,10 @@ export class GameComponent implements OnInit {
       }
     };
     this.phaserGame = new Phaser.Game(this.config);
-    // type: Phaser.AUTO,
-    //     width: 800,
-    //     height: 600,
-    //     physics: {
-    //         default: 'arcade',
-    //         arcade: {
-    //             gravity: { y: 200 }
-    //         }
-    //     },
-    //     scene: {
-    //         preload: preload,
-    //         create: create
-    //     }
   }
 
   ngOnInit(): void {
-    //this.phaserGame = new Phaser.Game(this.config);
+
   }
 
 }
@@ -78,9 +66,4 @@ class MainScene extends Phaser.Scene {
     this.load.image('logo', 'assets/sprites/phaser3-logo.png');
     this.load.image('red', 'assets/particles/red.png');
   }
-
-
-  // override update() {
-  //   console.log('update method');
-  // }
 }
