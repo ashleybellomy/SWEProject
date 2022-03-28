@@ -4,6 +4,7 @@ import { Player } from '../core/models/player';
 import { Calendar } from '../core/models/calendar';
 import { GameEngineService } from '../core/services/game-engine.service';
 import { Grid } from 'matter';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-game-window',
@@ -38,18 +39,17 @@ export class GameWindowComponent implements OnInit {
 }
 
 class MainScene extends Phaser.Scene {
-  calendarView: Phaser.GameObjects.Grid;
-
+  calendarView: Calendar;
   constructor() {
     super({ key: 'main '});
   }
 
   create() {
     //this.add.image(400, 300, 'sky');
-    //var calendar = new Calendar(72, 0x057605);
-    this.calendarView = new Calendar(this, 72, 0x057605);
 
-    //this.calendarView = this.add.grid(400, 300, calendar.cellWidth * 7, calendar.cellWidth * 5, calendar.cellWidth, calendar.cellWidth, 0xFFFFFF);
+    var date = new Date("2022/08/02");
+    this.calendarView = new Calendar(this, 400, 300);
+
     console.log('game calendar', this.calendarView);
 
     // var particles = this.add.particles('red');
@@ -84,6 +84,6 @@ class MainScene extends Phaser.Scene {
   }
 
   override update() {
-    
+  
   }
 }
