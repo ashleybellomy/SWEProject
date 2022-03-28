@@ -12,7 +12,7 @@ export class GameEngineService {
     // TODO: consider if we want game window to initialize this explicitly
     this.player = new Player("Dog Walker", 1200, 1000);
     console.log("player initialized", this.player);
-    alert("player initialized " + JSON.stringify(this.player));
+    //alert("player initialized " + JSON.stringify(this.player));
   }
 
 }
