@@ -1,11 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameWindowComponent } from './game-window.component';
 
-<<<<<<< HEAD
-import { GameWindowComponent } from './game-window.component';
-
-=======
->>>>>>> main
 describe('GameWindowComponent', () => {
   let component: GameWindowComponent;
   let fixture: ComponentFixture<GameWindowComponent>;
