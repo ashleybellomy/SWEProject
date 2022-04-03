@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Phaser from 'phaser';
-import { Player } from '../core/models/player';
-import { Calendar } from '../core/models/calendar';
+import { Board } from '../core/models/board';
 import { GameEngineService } from '../core/services/game-engine.service';
-import { Grid } from 'matter';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-game-window',
@@ -25,7 +22,7 @@ export class GameWindowComponent implements OnInit {
       physics: {
         default: 'arcade',
         arcade: {
-          gravity: { y: 200 }
+          gravity: { y: 0 }
         }
       }
     };
@@ -39,19 +36,20 @@ export class GameWindowComponent implements OnInit {
 }
 
 class MainScene extends Phaser.Scene {
-  calendarView: Calendar;
+  board: Board;
+  //TODO: delete after time/game service is implemented. this is just for testing
+  frameCounter: number;
   constructor() {
     super({ key: 'main '});
   }
 
   create() {
     //this.add.image(400, 300, 'sky');
+    this.frameCounter = 0;
+    this.board = new Board(this, 400, 300);
 
-    var date = new Date("2022/08/02");
-    this.calendarView = new Calendar(this, 400, 300);
-
-    console.log('game calendar', this.calendarView);
-
+    console.log('game calendar', this.board);
+   
     // var particles = this.add.particles('red');
 
     // var emitter = particles.createEmitter({
@@ -67,15 +65,25 @@ class MainScene extends Phaser.Scene {
     // logo.setCollideWorldBounds(true);
 
     // emitter.startFollow(logo);
-  }
 
-  initPlayer(player: Player) {
-    this.add.text(0, 0, "Cash: " + player.cash,);
-    this.add.text(0, 10, "Job: " + player.jobTitle);
-    this.add.text(0, 20, "Monthly Salary: " + player.monthlySalary);
+    // //TODO: this is just to demo movement on click, we want to remove it
+    // this.input.on("pointerdown",(pointer: Phaser.Input.Pointer) => {
+    //   console.log('x + ' + pointer.x + 'y' + pointer.y);
+    //   this.board.updatePlayer(pointer.x, pointer.y);
+    // });
   }
 
   preload() {
+    this.loadLocalSprites();
+    this.loadPhaserLabSprites();
+  }
+
+  loadLocalSprites() {
+    this.load.image('player', location.href + 'assets/sprites/awesomeface.png');
+  }
+
+  loadPhaserLabSprites() {
+    //TODO: these are just for demo purposes and can be removed
     this.load.setBaseURL('http://labs.phaser.io');
 
     this.load.image('sky', 'assets/skies/space3.png');
@@ -84,6 +92,17 @@ class MainScene extends Phaser.Scene {
   }
 
   override update() {
-  
+
+    //TODO: this is just a test to prove out moving the character/updating in game date
+    //It will be removed and replaced with a time or game engine service
+    this.frameCounter++;
+    if (this.frameCounter % 200 == 0) {
+      let gameDate = this.board.getCurrentDate();
+      console.log('current date', gameDate.getDate())
+      let newDate = new Date(gameDate.setDate(gameDate.getDate() + 5));// gameDate.getDate() + 1;
+      console.log('new date', newDate);
+      this.board.setCurrentDate(new Date(newDate));
+    }
+    this.board.update()
   }
 }

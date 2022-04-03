@@ -6,8 +6,6 @@ export class Player {
         this.cash = startingCash;
     }
 
-    //TODO: do we want to capture a name?
-    //public name: string;
     public jobTitle: string;
     public monthlySalary: number;
     public cash: number;
