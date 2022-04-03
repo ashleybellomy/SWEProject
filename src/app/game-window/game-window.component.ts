@@ -96,7 +96,7 @@ class MainScene extends Phaser.Scene {
     //TODO: this is just a test to prove out moving the character/updating in game date
     //It will be removed and replaced with a time or game engine service
     this.frameCounter++;
-    if (this.frameCounter % 100 == 0) {
+    if (this.frameCounter % 200 == 0) {
       let gameDate = this.board.getCurrentDate();
       console.log('current date', gameDate.getDate())
       let newDate = new Date(gameDate.setDate(gameDate.getDate() + 5));// gameDate.getDate() + 1;

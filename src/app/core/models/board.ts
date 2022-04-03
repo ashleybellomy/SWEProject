@@ -1,5 +1,3 @@
-import { Player } from "./player";
-
 export class DateCell {
     public x: number;
     public y: number;
@@ -21,17 +19,20 @@ export class DateCell {
     }
 }
 
+//TODO: need to play more with colors, text styles, fonts, etc
 export class Board extends Phaser.GameObjects.Grid {
     
     private currentDate: Date;
     private dateDisplay: Phaser.GameObjects.Text;
-    private player: Player;
     private dateCells!: DateCell[][];
     private inGameDateCell!: DateCell;
 
     private static readonly calendarRows: number = 6;
     private static readonly calendarColumns: number = 7;
     private static readonly dateDisplayPixelOffset: number = 5;
+
+    private playerToken!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
+
      
     constructor(scene: Phaser.Scene, x: number, y: number, cellWidth: number = 72, cellColor: number = 0xFFFFFF, currentDate: Date = new Date()) {
         super(scene, x, y, cellWidth * Board.calendarColumns, cellWidth * Board.calendarRows, cellWidth, cellWidth, cellColor);
@@ -41,17 +42,11 @@ export class Board extends Phaser.GameObjects.Grid {
         let bounds = this.getBounds();
         this.dateDisplay = scene.add.text(bounds.x, bounds.y - 75, "");
 
-        this.player = new Player("dog walker", 1000, 1200);
-        this.player.setLocation(this.scene, bounds.x, bounds.y, this.cellWidth - 5);
+        this.playerToken = this.scene.physics.add.sprite(bounds.x, bounds.y, "player");
+        this.playerToken.setDisplaySize(cellWidth - 10, cellWidth - 10);
        
         this.initGrid();
         this.setCurrentDate(currentDate);
-    }
-
-    // TODO: this is just for updating player location on click example
-    // we will want to remove it
-    public updatePlayer(x: number, y: number) {
-        this.player.updateLocation(x, y);
     }
 
     updateDateDisplay() {
@@ -59,8 +54,12 @@ export class Board extends Phaser.GameObjects.Grid {
     }
 
     plotHeader() {
-        // let bounds = this.getBounds();
-        // this.scene.add.text(bounds.x, bounds.y - 50, "Current Date: " + this.currentDate.toLocaleDateString("en-US"));
+       let days: string[] = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat" ];
+       let bounds = this.getBounds();
+       for (let index in days) {
+            this.scene.add.text(bounds.x, bounds.y - 20, days[index]);
+            bounds.x += this.cellWidth;
+       }
     }
 
     plotDays() {
@@ -119,8 +118,18 @@ export class Board extends Phaser.GameObjects.Grid {
     }
 
     override update() {
-        if (this.player)
-            this.player.update();
+        let location = this.inGameDateCell.getCenterPosition();
+        var distance = Phaser.Math.Distance.Between(this.playerToken.x, this.playerToken.y, location.x, location.y);
+
+        if (this.playerToken.body.speed > 0)
+        {
+            //  4 is our distance tolerance, i.e. how close the source can get to the target
+            //  before it is considered as being there. The faster it moves, the more tolerance is required.
+            if (distance < 4)
+            {
+                this.playerToken.body.reset(location.x, location.y);
+            }
+        }
     }
 
     public getCurrentDate() {
@@ -133,8 +142,7 @@ export class Board extends Phaser.GameObjects.Grid {
         this.updateDateDisplay();
         this.plotHeader();
         this.plotDays()
-        let playerPos = this.inGameDateCell.getCenterPosition();
-        this.updatePlayer(playerPos.x, playerPos.y);
+        let newPlayerPos = this.inGameDateCell.getCenterPosition();
+        this.scene.physics.moveToObject(this.playerToken, newPlayerPos, 500);
     }
-
 }
