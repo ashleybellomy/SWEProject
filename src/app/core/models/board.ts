@@ -64,7 +64,6 @@ export class Board extends Phaser.GameObjects.Grid {
 
     plotDays() {
         let bounds = this.getBounds();
-        console.log('current date', this.currentDate);
 
         let year = this.currentDate.getFullYear();
         let month = this.currentDate.getMonth();
@@ -73,7 +72,6 @@ export class Board extends Phaser.GameObjects.Grid {
         // This...just works. Javscript months are 0 indexed so we need 
         // to add 1 here, otherwise we get number of days in last month
         let daysInMonth = new Date(year, month + 1, 0).getDate();
-        console.log('days in month', daysInMonth);
         
         // Days of week also 0 based... Sunday - Saturday 0 - 6
         var firstDayOfThisMonth = new Date(year, month, 1);
