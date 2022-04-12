@@ -1,12 +1,12 @@
+import { Job } from "./job";
+
 export class Player {
 
-    constructor(jobTitle: string, startingSalary: number, startingCash: number) {
-        this.jobTitle = jobTitle;
-        this.monthlySalary = startingSalary;
+    constructor(job: Job, startingCash: number) {
+        this.job = job;
         this.cash = startingCash;
     }
 
-    public jobTitle: string;
-    public monthlySalary: number;
+    public job: Job;
     public cash: number;
 }
