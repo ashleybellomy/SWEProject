@@ -1,3 +1,5 @@
+import { GlobalConstants } from "../global-constants";
+
 export class DateCell {
     public x: number;
     public y: number;
@@ -40,7 +42,8 @@ export class Board extends Phaser.GameObjects.Grid {
 
         this.currentDate = currentDate;
         let bounds = this.getBounds();
-        this.dateDisplay = scene.add.text(bounds.x, bounds.y - 75, "");
+        this.dateDisplay = scene.add.text(bounds.x, bounds.y - 75, "")
+            .setFontFamily(GlobalConstants.TextFont);
 
         this.playerToken = this.scene.physics.add.sprite(bounds.x, bounds.y, "player");
         this.playerToken.setDisplaySize(cellWidth - 10, cellWidth - 10);
@@ -57,7 +60,8 @@ export class Board extends Phaser.GameObjects.Grid {
        let days: string[] = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat" ];
        let bounds = this.getBounds();
        for (let index in days) {
-            this.scene.add.text(bounds.x, bounds.y - 20, days[index]);
+            this.scene.add.text(bounds.x, bounds.y - 20, days[index])
+                .setFontFamily(GlobalConstants.TextFont);
             bounds.x += this.cellWidth;
        }
     }
@@ -86,7 +90,7 @@ export class Board extends Phaser.GameObjects.Grid {
                     let yLoc = bounds.y + (row * this.cellWidth);
                     let isInGameDate = (dayDisplay == currentDay);
                     let textColor = isInGameDate ? "#FF0000" : "#000000";
-                    let style = { color: textColor };
+                    let style = { color: textColor, fontFamily: GlobalConstants.TextFont };
                     let sceneText = this.scene.add.text(xLoc + Board.dateDisplayPixelOffset, yLoc + Board.dateDisplayPixelOffset, dayDisplay.toString(), style);
                     this.dateCells[row][col] = new DateCell(xLoc, yLoc, this.cellWidth, currentDay, sceneText);
                     if (isInGameDate)

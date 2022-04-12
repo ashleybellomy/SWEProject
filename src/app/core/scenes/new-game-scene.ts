@@ -1,7 +1,7 @@
-import { MainScene } from "./main-scene";
+import { GlobalConstants } from "../global-constants";
+import { ButtonLoaderService } from "../services/button-loader.service";
 
 export class NewGameScene extends Phaser.Scene {
-    playButton: Phaser.GameObjects.Sprite;
 
     constructor() {
         super({key: "newgame"});
@@ -10,18 +10,29 @@ export class NewGameScene extends Phaser.Scene {
     create() {
         let screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
         let screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
-        this.playButton = this.add.sprite(screenCenterX, screenCenterY, 'playbutton')
+        let newGameBtn = this.add.sprite(screenCenterX, screenCenterY, 'btn-New game')
             .setOrigin(0.5)
+            .setTint(GlobalConstants.ButtonTint)
             .setScale(0.5, 0.5)
-            .setInteractive();
-        this.playButton.on('pointerup', () => {
-            this.scene.start('main');
-            console.log(this.scene.manager);
+            .setInteractive({cursor: GlobalConstants.ButtonCursor})
+            .on('pointerup', () => {
+                this.scene.start('intro');
+            });
+
+        newGameBtn.on('pointerover', () => {
+            // TOOD: figure out how to chain this to the initialization
+            // ...cant figure it out without using 'this' but its scoped 
+            // to the scene, not the button
+            newGameBtn.setTint(GlobalConstants.ButtonHoverTint);
+        });
+        newGameBtn.on('pointerout', () => {
+            newGameBtn.setTint(GlobalConstants.ButtonTint);
         });
     }
 
     preload() {
-        this.load.image('playbutton', location.href + 'assets/sprites/play-button.png');
+        let buttonLoadService = new ButtonLoaderService();
+        buttonLoadService.loadButton("New game", this)
     }
 
     override update() {
