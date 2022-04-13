@@ -10,6 +10,8 @@ export class MainScene extends Phaser.Scene {
     }
   
     // yo man heres a comment
+    // here are some more comments
+    
     create() {
       this.frameCounter = 0;
       this.board = new Board(this, 400, 300);
