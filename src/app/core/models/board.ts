@@ -36,7 +36,7 @@ export class Board extends Phaser.GameObjects.Grid {
     private playerToken!: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
 
      
-    constructor(scene: Phaser.Scene, x: number, y: number, cellWidth: number = 72, cellColor: number = 0xFFFFFF, currentDate: Date = new Date()) {
+    constructor(scene: Phaser.Scene, x: number, y: number, cellWidth: number = 72, cellColor: number = 0xFF00FF, currentDate: Date = new Date()) {
         super(scene, x, y, cellWidth * Board.calendarColumns, cellWidth * Board.calendarRows, cellWidth, cellWidth, cellColor);
         scene.add.existing(this);
 
