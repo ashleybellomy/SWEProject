@@ -9,12 +9,11 @@ export class MainScene extends Phaser.Scene {
       super({ key: 'main'});
     }
   
-    // yo man heres a comment
-    // here are some more comments
-    
     create() {
       this.frameCounter = 0;
-      this.board = new Board(this, 400, 300);
+      let xAlign = this.cameras.main.worldView.x + this.cameras.main.width;
+      let yAlign = this.cameras.main.worldView.y + this.cameras.main.height / 2;
+      this.board = new Board(this, xAlign - (this.cameras.main.width / 4), yAlign);
     }
   
     preload() {

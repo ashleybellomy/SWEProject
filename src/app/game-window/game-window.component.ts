@@ -16,8 +16,8 @@ export class GameWindowComponent implements OnInit {
   constructor() {
     this.config = {
       type: Phaser.AUTO,
-      height: 600,
-      width: 800,
+      height: 720,
+      width: 1280,
       scene: [ NewGameScene, IntroScene, MainScene ],
       parent: 'gameContainer',
       physics: {
@@ -28,7 +28,7 @@ export class GameWindowComponent implements OnInit {
       },
       scale: {
         parent: 'gamewindow',
-        autoCenter: Phaser.Scale.CENTER_BOTH
+        autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
       }
     };
     this.phaserGame = new Phaser.Game(this.config);
