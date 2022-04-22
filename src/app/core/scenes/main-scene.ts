@@ -8,7 +8,7 @@ export class MainScene extends Phaser.Scene {
     constructor() {
       super({ key: 'main'});
     }
-  
+    //test comment
     create() {
       this.frameCounter = 0;
       let xAlign = this.cameras.main.worldView.x + this.cameras.main.width;
