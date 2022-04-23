@@ -32,7 +32,7 @@ export class NewGameScene extends Phaser.Scene {
 
     preload() {
         let buttonLoadService = new ButtonLoaderService();
-        buttonLoadService.loadButton("New game", this)
+        buttonLoadService.loadLargeButton("New game", this)
     }
 
     override update() {

@@ -19,7 +19,7 @@ export class GameWindowComponent implements OnInit {
       type: Phaser.AUTO,
       height: 720,
       width: 1280,
-      scene: [BudgetScene, NewGameScene, IntroScene,  MainScene ],
+      scene: [NewGameScene, IntroScene, BudgetScene, MainScene],
       parent: 'gameContainer',
       physics: {
         default: 'arcade',

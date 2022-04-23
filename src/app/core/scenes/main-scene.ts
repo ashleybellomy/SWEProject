@@ -1,5 +1,5 @@
 import { Board } from "../models/board";
-import { Player } from "../models/player";
+import { GameData } from "../models/game-data";
 
 export class MainScene extends Phaser.Scene {
     board: Board;
@@ -8,7 +8,6 @@ export class MainScene extends Phaser.Scene {
     constructor() {
       super({ key: 'main'});
     }
-  
     create() {
       this.frameCounter = 0;
       let xAlign = this.cameras.main.worldView.x + this.cameras.main.width;
@@ -20,8 +19,8 @@ export class MainScene extends Phaser.Scene {
       this.load.image('player', location.href + 'assets/sprites/awesomeface.png');
     }
 
-    init(player: Player) {
-      console.log('player passed into scene', player);
+    init(gameData: GameData) {
+      console.log('game data passed into scene', gameData);
     }
   
     override update() {

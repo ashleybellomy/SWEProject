@@ -12,25 +12,25 @@ export class JobGeneratorService {
 
         if (jobNumber == 1)
         {
-            return new Job('Barista', 'Starbucks', 1200);
+            return new Job('Barista', 'Starbucks', 2200);
         }
         else if (jobNumber == 2)
         {
-          return new Job('Shelf Stocker', 'Publix', 1000);
+          return new Job('Shelf Stocker', 'Publix', 2000);
         }
         else if (jobNumber == 3)
         {
-          return new Job('Pizza Delivery Person', 'Pizza Hut', 800);
+          return new Job('Pizza Delivery Person', 'Pizza Hut', 1800);
         }
         else if (jobNumber == 4)
         {
-          return new Job('Sales Professional', 'Suck It Vacuums', 1600);
+          return new Job('Sales Professional', 'Suck It Vacuums', 2600);
         }
         else if (jobNumber == 5)
         {
           return new Job('Assistant Manager', 'Walgreens', 2000);
         }
 
-        return new Job('Vagrant', 'The Streets', 500);
+        return new Job('Panhandler', 'The Streets', 2000);
     }
 }
