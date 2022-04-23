@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import Phaser from 'phaser';
 import { BudgetScene } from '../core/scenes/budget-scene';
 import { IntroScene } from '../core/scenes/intro-scene';
+import { IconSelect } from '../core/scenes/icon-select';
 import { MainScene } from '../core/scenes/main-scene';
 import { NewGameScene } from '../core/scenes/new-game-scene';
+
 
 @Component({
   selector: 'app-game-window',
@@ -19,7 +21,8 @@ export class GameWindowComponent implements OnInit {
       type: Phaser.AUTO,
       height: 720,
       width: 1280,
-      scene: [NewGameScene, IntroScene, BudgetScene, MainScene],
+      scene: [ NewGameScene, IconSelect, IntroScene, BudgetScene, MainScene ],
+
       parent: 'gameContainer',
       physics: {
         default: 'arcade',
