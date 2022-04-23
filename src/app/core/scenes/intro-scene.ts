@@ -57,7 +57,7 @@ export class IntroScene extends Phaser.Scene {
             .setTint(GlobalConstants.ButtonTint)
             .setInteractive({cursor: GlobalConstants.ButtonCursor})
             .setScale(0.5, 0.5)
-            .on('pointerup', ()=> {
+            .on('pointerdown', ()=> {
                 this.scene.start('main', {player: this.player});
             });
             continueButton.on('pointerover', () => {

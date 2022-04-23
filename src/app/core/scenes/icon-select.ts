@@ -48,43 +48,43 @@ export class IconSelect extends Phaser.Scene {
         slime.setScale(0.3);
 
         // Makes images into buttons, when clicked it moves game to intro scene
-        awesomeface.setInteractive()
+        awesomeface.setInteractive({cursor: GlobalConstants.ButtonCursor})
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
 
                 this.scene.start('intro', { image: 'awesomeface.png' });
             }) 
 
-        magikarp.setInteractive()
+        magikarp.setInteractive({cursor: GlobalConstants.ButtonCursor})
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('intro', { image: 'magikarp.png' });
         }) 
 
-        fuzzy.setInteractive()
+        fuzzy.setInteractive({cursor: GlobalConstants.ButtonCursor})
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('intro', { image: 'fuzzy.png' });
         }) 
 
-        lady.setInteractive()
+        lady.setInteractive({cursor: GlobalConstants.ButtonCursor})
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('intro', { image: 'lady.png' });
         }) 
 
-        mage.setInteractive()
+        mage.setInteractive({cursor: GlobalConstants.ButtonCursor})
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('intro', { image: 'mage.png' });
         }) 
 
-        purpledude.setInteractive()
+        purpledude.setInteractive({cursor: GlobalConstants.ButtonCursor})
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('intro', { image: 'purpledude.png' });
         }) 
 
-        shovelknight.setInteractive()
+        shovelknight.setInteractive({cursor: GlobalConstants.ButtonCursor})
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('intro', { image: 'shovelknight.png' });
         }) 
 
-        slime.setInteractive()
+        slime.setInteractive({cursor: GlobalConstants.ButtonCursor})
         .on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
             this.scene.start('intro', { image: 'slime.png' });
         }) 
