@@ -5,11 +5,25 @@ import { JobGeneratorService } from "../services/job-generator.service";
 
 export class IntroScene extends Phaser.Scene {
     player: Player;
+    imageFile: any;
+
     constructor() {
         super({key: 'intro'});
         let jobGenerator = new JobGeneratorService();
         let job = jobGenerator.generateRandomJob();
         this.player = new Player(job, 1000);
+    }
+
+    init(data: any)
+    {
+        this.imageFile = data.image;
+    }
+
+    preload() {
+        let buttonLoaderService = new ButtonLoaderService();
+        buttonLoaderService.loadButton("Continue", this);
+        //this.load.image('player', location.href + 'assets/sprites/awesomeface.png');
+        this.load.image('player', 'assets/sprites/' + this.imageFile );
     }
 
     create() {
@@ -43,7 +57,7 @@ export class IntroScene extends Phaser.Scene {
             .setTint(GlobalConstants.ButtonTint)
             .setInteractive({cursor: GlobalConstants.ButtonCursor})
             .setScale(0.5, 0.5)
-            .on('pointerup', ()=> {
+            .on('pointerdown', ()=> {
                 this.scene.start('main', {player: this.player});
             });
             continueButton.on('pointerover', () => {
@@ -57,11 +71,6 @@ export class IntroScene extends Phaser.Scene {
             });
     }
 
-    preload() {
-        let buttonLoaderService = new ButtonLoaderService();
-        buttonLoaderService.loadButton("Continue", this);
-        this.load.image('player', location.href + 'assets/sprites/awesomeface.png');
-    }
 
     override update() {
 
