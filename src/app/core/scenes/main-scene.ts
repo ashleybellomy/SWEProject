@@ -8,20 +8,26 @@ export class MainScene extends Phaser.Scene {
     constructor() {
       super({ key: 'main'});
     }
-  
+
+    init(player: Player) {
+      console.log('player passed into scene', player);
+    }
+
+    preload() {
+      this.load.image('player', location.href + 'assets/sprites/awesomeface.png');
+      this.load.image('purple', 'assets/backgrounds/purple.png');
+
+    }
     create() {
       this.frameCounter = 0;
       let xAlign = this.cameras.main.worldView.x + this.cameras.main.width;
       let yAlign = this.cameras.main.worldView.y + this.cameras.main.height / 2;
       this.board = new Board(this, xAlign - (this.cameras.main.width / 4), yAlign);
-    }
-  
-    preload() {
-      this.load.image('player', location.href + 'assets/sprites/awesomeface.png');
-    }
+      const background = this.add.image(0,0,'purple');
 
-    init(player: Player) {
-      console.log('player passed into scene', player);
+      background.setScale(4.5);
+
+      background.setAlpha(1,0,0,0);
     }
   
     override update() {
