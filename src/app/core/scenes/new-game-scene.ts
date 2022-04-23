@@ -16,7 +16,7 @@ export class NewGameScene extends Phaser.Scene {
             .setScale(0.5, 0.5)
             .setInteractive({cursor: GlobalConstants.ButtonCursor})
             .on('pointerup', () => {
-                this.scene.start('intro');
+                this.scene.start('icons');
             });
 
         newGameBtn.on('pointerover', () => {
