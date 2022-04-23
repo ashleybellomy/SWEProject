@@ -21,8 +21,7 @@ export class IntroScene extends Phaser.Scene {
 
     preload() {
         let buttonLoaderService = new ButtonLoaderService();
-        buttonLoaderService.loadButton("Continue", this);
-        //this.load.image('player', location.href + 'assets/sprites/awesomeface.png');
+        buttonLoaderService.loadLargeButton("Continue", this);
         this.load.image('player', 'assets/sprites/' + this.imageFile );
     }
 
@@ -58,7 +57,7 @@ export class IntroScene extends Phaser.Scene {
             .setInteractive({cursor: GlobalConstants.ButtonCursor})
             .setScale(0.5, 0.5)
             .on('pointerdown', ()=> {
-                this.scene.start('main', {player: this.player});
+                this.scene.start('budget', this.player);
             });
             continueButton.on('pointerover', () => {
                 // TOOD: figure out how to chain this to the initialization
@@ -70,8 +69,7 @@ export class IntroScene extends Phaser.Scene {
                 continueButton.setTint(GlobalConstants.ButtonTint);
             });
     }
-
-
+    
     override update() {
 
     }
